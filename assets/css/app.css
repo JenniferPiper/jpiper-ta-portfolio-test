@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600|Underdog");
+
+.accent-color {
+  color: #0ffc;
+ 
+}
+.footnote{
+  font-family: 'Underdog';
+  font-size: 0.7em;
+  opacity: 0.8;
+}
+.footnote span {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 3em;
+  position: relative;
+  top: .3em;
+}
