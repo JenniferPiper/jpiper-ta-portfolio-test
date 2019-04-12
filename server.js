@@ -1,35 +1,26 @@
 'use strict';
 
-
-console.log('sup');
+require('dotenv').config();
 const express = require('express');
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 app.use(express.static('./public'));
 
-// frontend on 8080
-// backend on 3000
-// postgres on 5432
-
-const PORT = 3000;
-
-let visits = 0;
-
-app.get('/text', (request, response) => {
-  visits++;
-  const message = `congrats you are the ${visits} visitor`;
-  response.send(message);
+app.get('/hello', (request, response) => {
+  response.status(200).send('Hello');
 });
 
-app.get('/student', (request, response) => {
-  const studentJSON = {
-    name: 'chris'
-  };
-  response.send(studentJSON);
+app.get('/data', (request, response) => {
+  let airplanes = {
+    departure: Date.now(),
+    canFly: true,
+    pilot: 'Well Trained'
+  }
+  response.status(200).json(airplanes);
 });
 
-app.use('*', (request, response) => {
-  response.send('that didn\'t work');
-});
+app.use('*', (request, response) => response.send('Sorry, that route does not exist.'))
 
-app.listen(PORT, () => console.log(`I'm a happy server running on PORT ${PORT}`));
+app.listen(PORT,() => console.log(`Listening on port ${PORT}`));
